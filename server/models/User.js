@@ -1,19 +1,18 @@
 const { Schema, model } = require('mongoose')
 const bcrypt = require('bcrypt')
 
+
 const userSchema = new Schema({
-    firstName: {
+    username: {
         type: String,
         required: true,
+        unique: true,
         trim: true
-    },
-    lastName: {
-        type: String,
-        required: true
     },
     email: {
         type: String,
         required: true,
+        unique: true,
         trim: true,
         match: [/.+@.+\..+/, 'Must match an email address!'],
     },
@@ -21,7 +20,7 @@ const userSchema = new Schema({
         type: String,
         required: true,
         minlength: 5
-    }
+    },
 })
 
 userSchema.pre('save', async function (next) {
@@ -40,3 +39,4 @@ userSchema.methods.isCorrectPassword = async function (password) {
 const User = model('User', userSchema)
 
 module.exports = User
+
