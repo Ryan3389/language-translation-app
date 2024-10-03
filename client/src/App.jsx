@@ -15,6 +15,9 @@ import '../src/App.css'
 const httpLink = createHttpLink({
   uri: '/graphql'
 })
+// const httpLink = createHttpLink({
+//     uri: 'http://localhost:3001/graphql', // Must point to the Express server
+// });
 
 //Modify the graphql request to apollo server. Adds the jwt token to the header to ensure the user is verified on the backend
 const authLink = setContext((_, { headers }) => {
