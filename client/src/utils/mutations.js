@@ -12,3 +12,10 @@ mutation Mutation($email: String!, $password: String!) {
   }
 }
 `
+export const TRANSLATE_TEXT = gql`
+  mutation Mutation($text: String!, $language: String!) {
+  translateText(text: $text, language: $language) {
+    translatedText
+  }
+}
+`
