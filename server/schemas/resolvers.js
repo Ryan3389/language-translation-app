@@ -1,5 +1,11 @@
 const { User } = require("../models")
 const { signToken, AuthenticationError } = require('../utils/auth')
+require('dotenv').config()
+const OpenAI = require('openai');
+
+const openai = new OpenAI({
+    apiKey: process.env.API_KEY
+})
 
 const resolvers = {
     Query: {
@@ -42,6 +48,32 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
+
+        translateText: async (_, { text, language }) => {
+            try {
+                const messages = [
+                    {
+                        role: 'system',
+                        content: `You are a language translation expert. Translate the given text into ${language} `
+                    },
+                    {
+                        role: 'user',
+                        content: text
+                    }
+                ]
+                const response = await openai.chat.completions.create({
+                    model: 'gpt-3.5-turbo',
+                    messages: messages
+                })
+
+                const translatedText = response.choices[0].message.content
+
+                return { translatedText }
+            } catch (error) {
+                console.error('Error in trandlateText resolver ', error)
+                throw new Error('Translation failed')
+            }
+        }
     }
 }
 
