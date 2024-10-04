@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
-
-function Login() {
+import FormComponent from "../components/FormComponent"
+const Login = () => {
     const [formState, setFormState] = useState({
         email: '',
         password: ''
@@ -34,34 +34,25 @@ function Login() {
             console.error(error);
         }
     };
+    const fields = [
+        { name: 'email', type: 'email', label: 'Email', placeholder: 'Enter yor email' },
+        { name: 'password', type: 'password', label: 'Password', placeholder: 'Enter your password' }
+    ]
+
 
     return (
         <section className='min-h-screen flex justify-center items-center'>
-            <form onSubmit={handleFormSubmit} className='p-8 max-w-md w-full'>
-                <h1 className='text-3xl font-bold text-gray-900 mb-4 text-center'>Login</h1>
-                <label htmlFor='email' className='block text-gray-900 mb-2'>Email</label>
-                <input className='border border-gray-300 p-2 w-full rounded mb-4'
-                    type="email"
-                    name="email"
-                    placeholder="email@example.com"
-                    required
-                    onChange={handleChange}
-                    value={formState.email} />
-
-                <label htmlFor='password' className='block text-gray-900 mb-2'>Password</label>
-                <input className='border border-gray-300 p-2 w-full rounded mb-4'
-                    type="password"
-                    name="password"
-                    placeholder="******"
-                    required
-                    onChange={handleChange}
-                    value={formState.password}
-                />
-                <input type="submit" className='bg-gray-900 text-white w-full p-2 rounded hover:bg-gray-700' />
-            </form>
-
+            <FormComponent
+                formTitle="Login"
+                fields={fields}
+                submitButtonText="Login"
+                formData={formState}
+                handleChange={handleChange}
+                handleFormSubmit={handleFormSubmit}
+            />
         </section>
     )
 }
 
-export default Login;
+export default Login
+
