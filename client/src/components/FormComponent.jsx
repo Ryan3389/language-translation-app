@@ -18,7 +18,7 @@ const FormComponent = ({ formTitle, fields, submitButtonText, formData, handleCh
                     />
                 </div>
             ))}
-            <input type="submit" value={submitButtonText} className='mt-4 w-full bg-gray-900 text-white py-2 rounded' />
+            <input type="submit" value={submitButtonText} className='mt-4 w-full bg-gray-900 text-white py-2 rounded cursor-pointer' />
         </form>
     )
 }
