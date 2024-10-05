@@ -3,6 +3,7 @@ import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 import FormComponent from "../components/FormComponent"
+import Navbar from '../components/Navbar';
 const Login = () => {
     const [formState, setFormState] = useState({
         email: '',
@@ -35,22 +36,27 @@ const Login = () => {
         }
     };
     const fields = [
-        { name: 'email', type: 'email', label: 'Email', placeholder: 'Enter yor email' },
-        { name: 'password', type: 'password', label: 'Password', placeholder: 'Enter your password' }
+        { name: 'email', type: 'email', label: 'Email', placeholder: 'john_doe@example.com' },
+        { name: 'password', type: 'password', label: 'Password', placeholder: '*****' }
     ]
 
 
     return (
-        <section className='min-h-screen flex justify-center items-center'>
-            <FormComponent
-                formTitle="Login"
-                fields={fields}
-                submitButtonText="Login"
-                formData={formState}
-                handleChange={handleChange}
-                handleFormSubmit={handleFormSubmit}
-            />
-        </section>
+        <>
+            <Navbar />
+            <section className='h-[90vh] flex justify-center items-center'>
+                <FormComponent
+                    formTitle="Login"
+                    fields={fields}
+                    submitButtonText="Login"
+                    formData={formState}
+                    handleChange={handleChange}
+                    handleFormSubmit={handleFormSubmit}
+                    redirectPath='/signup'
+                    redirectText="Don't have an account ? Create Account"
+                />
+            </section>
+        </>
     )
 }
 

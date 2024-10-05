@@ -1,3 +1,4 @@
+import AuthComponent from './components/AuthComponent';
 import { Outlet } from 'react-router-dom'
 
 import {
