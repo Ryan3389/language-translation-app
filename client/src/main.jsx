@@ -7,6 +7,7 @@ import HeroPage from "./pages/HeroPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import DashboardPage from "./pages/DashboardPage";
+import AuthComponent from './components/AuthComponent';
 import './index.css'
 
 const router = createBrowserRouter([
@@ -29,7 +30,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard',
-        element: <DashboardPage />
+        element: (
+          <AuthComponent>
+            <DashboardPage />
+          </AuthComponent>
+        )
       }
     ]
   }
