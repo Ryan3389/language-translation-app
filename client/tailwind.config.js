@@ -10,7 +10,8 @@ export default {
         navbar: '#005F9A',
         navText: '#E1EDFB',
         bodyColor: '#EFF0F3',
-        secondaryColor: '#0C2D4E'
+        secondaryColor: '#0C2D4E',
+        btnHover: '#15466B'
       }
     },
   },

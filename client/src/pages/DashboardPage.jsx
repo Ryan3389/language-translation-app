@@ -9,6 +9,8 @@ const DashboardPage = () => {
         translate: '',
         language: ''
     })
+    const [result, setResult] = useState()
+
     const [translateText, { error, data }] = useMutation(TRANSLATE_TEXT)
 
     const handleChange = (e) => {
@@ -28,7 +30,11 @@ const DashboardPage = () => {
                     language: formData.language
                 }
             })
-            console.log(data)
+            setResult(data.translateText.translatedText)
+            setFormData({
+                translate: '',
+                language: ''
+            })
         } catch (error) {
             console.error('Form submit error: ', error)
         }
@@ -42,7 +48,7 @@ const DashboardPage = () => {
     return (
         <>
             <Navbar />
-            <section className="h-[90vh] flex justify-center items-center">
+            <section className="h-[90vh] flex justify-center items-center flex-col">
                 <FormComponent
                     formTitle='Language Translation'
                     fields={fields}
@@ -51,6 +57,10 @@ const DashboardPage = () => {
                     handleChange={handleChange}
                     handleFormSubmit={handleFormSubmit}
                 />
+
+                <div className="result-div border border-gray-200 bg-gray-200 rounded-lg">
+                    {result ? <p className="text-lg">{result}</p> : <p className="text-lg">Translated text will show here</p>}
+                </div>
             </section>
 
         </>

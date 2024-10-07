@@ -35,7 +35,7 @@ const FormComponent = ({ formTitle, fields, submitButtonText, formData, handleCh
                 </div>
             ))}
             <Link to={redirectPath}>{redirectText}</Link>
-            <input type="submit" value={submitButtonText} className='mt-4 w-full bg-secondaryColor text-white py-2 rounded cursor-pointer' />
+            <input type="submit" value={submitButtonText} className='mt-4 w-full bg-secondaryColor hover:bg-btnHover text-white py-2 rounded cursor-pointer' />
         </form>
     );
 };
