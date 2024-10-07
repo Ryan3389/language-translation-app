@@ -14,7 +14,7 @@ import '../src/App.css'
 
 //sets the endpoint for where graphql mutations/queries should be sent to
 const httpLink = createHttpLink({
-  uri: '/graphql'
+  uri: 'https://speakeasytranslate.netlify.app/graphql'
 })
 
 //Modify the graphql request to apollo server. Adds the jwt token to the header to ensure the user is verified on the backend

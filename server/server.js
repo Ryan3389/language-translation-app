@@ -4,6 +4,7 @@ const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
 const { authMiddleware } = require('./utils/auth');
 const path = require('path');
+const cors = require('cors')
 
 //db + backend
 const db = require('./config/connection');
@@ -17,6 +18,12 @@ const server = new ApolloServer({
     resolvers,
 });
 
+const corsOptions = {
+    origin: 'https://speakeasytranslate.netlify.app/',
+    credentials: true,
+}
+
+app.use(cors(corsOptions))
 //STEP 2: START SERVER
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async () => {
