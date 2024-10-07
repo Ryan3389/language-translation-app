@@ -14,6 +14,7 @@ const resolvers = {
                 return await User.find()
             } catch (error) {
                 console.error(error)
+                throw new Error('Failed to fetch users')
             }
         },
     },
@@ -29,6 +30,7 @@ const resolvers = {
                 return { token, user }
             } catch (error) {
                 console.error(error)
+                throw new Error('Failed to create user')
             }
         },
 
@@ -42,7 +44,7 @@ const resolvers = {
             const correctPw = await user.isCorrectPassword(password);
 
             if (!correctPw) {
-                throw AuthenticationError;
+                throw new AuthenticationError;
             }
 
             const token = signToken(user);
