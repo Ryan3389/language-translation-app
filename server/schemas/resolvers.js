@@ -1,11 +1,15 @@
 const { User } = require("../models")
 const { signToken, AuthenticationError } = require('../utils/auth')
 require('dotenv').config()
+// console.log('api key: ', process.env.API_KEY)
 const OpenAI = require('openai');
 
 const openai = new OpenAI({
     apiKey: process.env.API_KEY
 })
+
+
+
 
 const resolvers = {
     Query: {
