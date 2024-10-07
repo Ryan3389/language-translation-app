@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* body {
-    background-color: #EFF0F3;
-} */
+
 body {
     background: linear-gradient(to right, #bfdbfe, #a1a1aa);
+}
 
-
+.result-div {
+    padding: 25px 75px;
 }
